@@ -1,87 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
   <script>
+    function computerPlay() {
+      const choices = ["rock", "paper", "scissors"];
+      return choices[Math.floor(Math.random() * choices.length)]; //add input from owner
+    }
     function playRound(playerSelection, computerSelection) {
-      // your code here!
-      const playerpoint = 0;
       let addingpoint = 0;
-
-      let choices = ["rock", "paper", "scissors"];
-      function computerPlay() {
-        return choices[Math.floor(Math.random() * choices.length)]; //add input from owner
-      }
-      function game() {
-        let sign = prompt("Rock, paper, or scissors?");
-        if (sign.toLowerCase() == "rock") {
-          if (computerSelection == "paper") {
-            console.log("You lose! Paper beats rock");
-            addingpoint = -1;
-            return addingpoint;
-          }
-          if (computerSelection == "scissors") {
-            console.log("You win! Rock beats scissors");
-            addingpoint = 1;
-            return addingpoint;
-          } else {
-            console.log("Tie");
-            return addingpoint;
-          }
-        }
-        if (sign.toLowerCase() == "paper") {
-          if (computerSelection == "rock") {
-            console.log("You win! Paper beats rock ");
-            addingpoint = 1;
-            return addingpoint;
-          }
-          if (computerSelection == "scissors") {
-            console.log("You lose! Scissors beats paper");
-            addingpoint = -1;
-            return addingpoint;
-          } else {
-            console.log("Tie");
-            return addingpoint;
-          }
+      if (playerSelection == "rock") {
+        if (computerSelection == "paper") {
+          console.log("You lose! Paper beats rock");
+          addingpoint = -1;
+          return addingpoint;
+        } else if (computerSelection == "scissors") {
+          console.log("You win! Rock beats scissors");
+          addingpoint = 1;
+          return addingpoint;
         } else {
-          if (computerSelection == "rock") {
-            console.log("You lose! Rock beats scissors");
-            addingpoint = -1;
-            return addingpoint;
-          }
-          if (computerSelection == "paper") {
-            console.log("You win! Scissors beats paper ");
-            addingpoint = 1;
-            return addingpoint;
-          } else {
-            console.log("Tie");
-            return addingpoint;
-          }
+          console.log("Tie. Rock ties with rock");
+          return addingpoint;
         }
-      }
-
-      let i;
-      for (i = 0; i < 5; i++) {
-        game();
-        if (addingpoint != 0) {
-          playerpoint += addingpoint;
+      } else if (playerSelection == "paper") {
+        if (computerSelection == "rock") {
+          console.log("You win! Paper beats rock");
+          addingpoint = 1;
+          return addingpoint;
+        } else if (computerSelection == "scissors") {
+          console.log("You lose! Scissors beats paper");
+          addingpoint = -1;
+          return addingpoint;
         } else {
-          continue;
+          console.log("Tie. Paper ties with paper");
+          return addingpoint;
         }
-        addingpoint = 0;
-        return playerpoint;
-      }
-      if (playerpoint > 0) {
-        console.log("You won the whole game!");
-      }
-      if (playerpoint < 0) {
-        console.log("You lost the whole game!");
       } else {
-        console.log("Tie");
+        if (computerSelection == "rock") {
+          console.log("You lose! Rock beats scissors");
+          addingpoint = -1;
+          return addingpoint;
+        } else if (computerSelection == "paper") {
+          console.log("You win! Scissors beats paper ");
+          addingpoint = 1;
+          return addingpoint;
+        } else {
+          console.log("Tie. Scissors ties with paper");
+          return addingpoint;
+        }
       }
     }
 
-    const playerSelection = "rock";
-    const computerSelection = computerPlay();
-    console.log(playRound(playerSelection, computerSelection));
+    function game() {
+      let playerpoint = 0;
+      for (let i = 0; i < 5; i++) {
+        let playerSelection = prompt("Rock, paper or scissors?").toLowerCase();
+        let computerSelection = computerPlay();
+        let point = playRound(playerSelection, computerSelection); //this returns the integer value in function playround that used to be called addingpoint
+        playerpoint += point;
+      }
+      if (playerpoint > 0) {
+        console.log("You won the whole game!");
+      } else if (playerpoint < 0) {
+        console.log("You lost the whole game!");
+      } else {
+        console.log("You tied the whole game!");
+      }
+    }
   </script>
   <head>
     <meta charset="UTF-8" />
