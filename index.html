@@ -2,59 +2,62 @@
 <html lang="en">
   <script>
     function computerPlay() {
+      // this function allows the computer to randomly choose between rock, papper, scissors
       const choices = ["rock", "paper", "scissors"];
-      return choices[Math.floor(Math.random() * choices.length)]; //add input from owner
-    }
+      return choices[Math.floor(Math.random() * choices.length)];
+
     function playRound(playerSelection, computerSelection) {
-      let addingpoint = 0;
+      // this function checks the value between playerSelection and computerSelection and assigns a point to the winner
+      let point = 0;
       if (playerSelection == "rock") {
         if (computerSelection == "paper") {
           console.log("You lose! Paper beats rock");
-          addingpoint = -1;
-          return addingpoint;
+          point = -1;
+          return point;
         } else if (computerSelection == "scissors") {
           console.log("You win! Rock beats scissors");
-          addingpoint = 1;
-          return addingpoint;
+          point = 1;
+          return point;
         } else {
           console.log("Tie. Rock ties with rock");
-          return addingpoint;
+          return point;
         }
       } else if (playerSelection == "paper") {
         if (computerSelection == "rock") {
           console.log("You win! Paper beats rock");
-          addingpoint = 1;
-          return addingpoint;
+          point = 1;
+          return point;
         } else if (computerSelection == "scissors") {
           console.log("You lose! Scissors beats paper");
-          addingpoint = -1;
-          return addingpoint;
+          point = -1;
+          return point;
         } else {
           console.log("Tie. Paper ties with paper");
-          return addingpoint;
+          return point;
         }
       } else {
         if (computerSelection == "rock") {
           console.log("You lose! Rock beats scissors");
-          addingpoint = -1;
-          return addingpoint;
+          point = -1;
+          return point;
         } else if (computerSelection == "paper") {
           console.log("You win! Scissors beats paper ");
-          addingpoint = 1;
-          return addingpoint;
+          point = 1;
+          return point;
         } else {
           console.log("Tie. Scissors ties with paper");
-          return addingpoint;
+          return point;
         }
       }
     }
 
     function game() {
+      // this function goes through 5 rounds, counts the points and tells you who wins at the end
       let playerpoint = 0;
       for (let i = 0; i < 5; i++) {
         let playerSelection = prompt("Rock, paper or scissors?").toLowerCase();
         let computerSelection = computerPlay();
-        let point = playRound(playerSelection, computerSelection); //this returns the integer value in function playround that used to be called addingpoint
+        let point = playRound(playerSelection, computerSelection); //this returns the integer value in function playround()
         playerpoint += point;
       }
       if (playerpoint > 0) {
