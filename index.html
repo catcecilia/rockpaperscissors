@@ -1,6 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
   <script>
+    let playerpoint = 0;
+    let computerpoint = 0;
+    function divPressed(playerSelection) {
+      const playerscore = document.getElementById("playerscore");
+      const computerscore = document.getElementById("computerscore");
+      computerSelection = computerPlay();
+      let point = playRound(playerSelection, computerSelection);
+      if (point == 1) {
+        playerpoint += 1;
+      } else if (point == -1) {
+        computerpoint += 1;
+      }
+      let innerplayerscore = document.createElement("span");
+      let innercomputerscore = document.createElement("span");
+      innerplayerscore.textContent = playerpoint;
+      innercomputerscore.textContent = computerpoint;
+      playerscore.innerHTML = "";
+      computerscore.innerHTML = "";
+      playerscore.appendChild(innerplayerscore);
+      computerscore.appendChild(innercomputerscore);
+      const results = document.getElementById("results");
+      const endgame = document.createElement("h2");
+
+      if (playerpoint == 5) {
+        endgame.textContent = "You won the whole game!";
+        endgame.style.color = "blue";
+        playerpoint = 0;
+        computerpoint = 0;
+      } else if (computerpoint == 5) {
+        endgame.textContent = "You lost the whole game!";
+        endgame.style.color = "red";
+        playerpoint = 0;
+        computerpoint = 0;
+      }
+      results.appendChild(endgame);
+    }
+
     function computerPlay() {
       // this function allows the computer to randomly choose between rock, papper, scissors
       const choices = ["rock", "paper", "scissors"];
@@ -10,70 +47,77 @@
     function playRound(playerSelection, computerSelection) {
       // this function checks the value between playerSelection and computerSelection and assigns a point to the winner
       let point = 0;
+      const results = document.getElementById("results");
+      results.innerHTML = "";
+      const endround = document.createElement("p");
       if (playerSelection == "rock") {
         if (computerSelection == "paper") {
-          console.log("You lose! Paper beats rock");
+          endround.textContent = "You lose this round! Paper beats rock";
+          results.appendChild(endround);
           point = -1;
           return point;
         } else if (computerSelection == "scissors") {
-          console.log("You win! Rock beats scissors");
+          endround.textContent = "You win this round! Rock beats scissors";
+          results.appendChild(endround);
           point = 1;
           return point;
         } else {
-          console.log("Tie. Rock ties with rock");
+          endround.textContent = "Tied this round. Rock ties with rock";
+          results.appendChild(endround);
           return point;
         }
       } else if (playerSelection == "paper") {
         if (computerSelection == "rock") {
-          console.log("You win! Paper beats rock");
+          endround.textContent = "You win this round! Paper beats rock";
+          results.appendChild(endround);
           point = 1;
           return point;
         } else if (computerSelection == "scissors") {
-          console.log("You lose! Scissors beats paper");
+          endround.textContent = "You lose this round! Scissors beats paper";
+          results.appendChild(endround);
           point = -1;
           return point;
         } else {
-          console.log("Tie. Paper ties with paper");
+          endround.textContent = "Tied this round. Paper ties with paper";
+          results.appendChild(endround);
           return point;
         }
       } else {
         if (computerSelection == "rock") {
-          console.log("You lose! Rock beats scissors");
+          endround.textContent = "You lose this round! Rock beats scissors";
+          results.appendChild(endround);
           point = -1;
           return point;
         } else if (computerSelection == "paper") {
-          console.log("You win! Scissors beats paper ");
+          endround.textContent = "You win this round! Scissors beats paper ";
+          results.appendChild(endround);
           point = 1;
           return point;
         } else {
-          console.log("Tie. Scissors ties with paper");
+          endround.textContent = "Tied this round. Scissors ties with paper";
+          results.appendChild(endround);
           return point;
         }
-      }
-    }
-
-    function game() {
-      // this function goes through 5 rounds, counts the points and tells you who wins at the end
-      let playerpoint = 0;
-      for (let i = 0; i < 5; i++) {
-        let playerSelection = prompt("Rock, paper or scissors?").toLowerCase();
-        let computerSelection = computerPlay();
-        let point = playRound(playerSelection, computerSelection); //this returns the integer value in function playround()
-        playerpoint += point;
-      }
-      if (playerpoint > 0) {
-        console.log("You won the whole game!");
-      } else if (playerpoint < 0) {
-        console.log("You lost the whole game!");
-      } else {
-        console.log("You tied the whole game!");
       }
     }
   </script>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <title>Rock Paper Scissors</title>
   </head>
-  <body></body>
+  <body>
+    <h1>Rock, paper, or scissors?</h1>
+    <div id="wrapper">
+      <div id="container">
+        <div id="rock" class="btn" onclick="divPressed('rock')"></div>
+        <div id="paper" class="btn" onclick="divPressed('paper')"></div>
+        <div id="scissors" class="btn" onclick="divPressed('scissors')"></div>
+        <div id="playerscore"></div>
+        <div id="results"></div>
+        <div id="computerscore"></div>
+      </div>
+    </div>
+  </body>
 </html>

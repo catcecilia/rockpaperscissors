@@ -1,0 +1,78 @@
+h1 {
+  text-align: center;
+}
+
+#wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+}
+
+#container {
+  display: grid;
+  padding-top: 5%;
+  margin: 0 auto;
+  height: 75vh;
+  width: 100%;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+#rock {
+  background-image: url("rock.JPG");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+#paper {
+  background-image: url("paper.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+#scissors {
+  background-image: url("scissors.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.btn {
+  margin: 5px;
+  border-radius: 25px;
+}
+.btn:hover {
+  margin-top: 3px;
+  box-shadow: 3px 10px gray;
+}
+#playerscore {
+  grid-column-start: 1;
+  margin-top: 10%;
+  font-size: 25vh;
+  font-weight: bolder;
+  color: blue;
+  background-image: url("player.png");
+  opacity: 0.5;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+span {
+}
+#results {
+  grid-column-start: 2;
+  margin-top: 10%;
+}
+
+#computerscore {
+  grid-column-start: 3;
+  margin-top: 10%;
+  font-size: 25vh;
+  font-weight: bolder;
+  color: red;
+  background-image: url("computer.png");
+  opacity: 0.5;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
