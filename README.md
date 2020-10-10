@@ -26,13 +26,15 @@ if countingpoints > 0 return a string stating that player won the game
 if countingpoints = 0 return a string stating it is a tie
 
 **_new pseudo code with dom manipulation_**
-on load, start game function
+on press, start a round
 
-for i = 0 and less than 5 ++:
 add event listener to hear what div the user clicks
 assign playerselection to the value of div clicked (r/p/s)
 compare like previously to find if user won the round, lost the round or tied the round
+ remove potential stuff in results currently in html
 inject result of round to html
 
-after counter, check the player points
+ check if player points or computer points = 5
+ remove potential stuff in results currently in html
 inject results to html
+reset player and computer points to 0
